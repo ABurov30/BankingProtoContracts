@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package account.v1;
+
+option java_multiple_files = true;
+option java_package = "account.contract.v1";
+
+service AccountRpcService {
+  rpc GetAccount(GetAccountRequest) returns (GetAccountResponse);
+}
+
+message GetAccountRequest {}
+
+message GetAccountResponse {
+  string message = 1;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package card.v1;
+
+option java_multiple_files = true;
+option java_package = "card.contract.v1";
+
+service CardRpcService {
+  rpc GetCard(GetCardRequest) returns (GetCardResponse);
+}
+
+message GetCardRequest {}
+
+message GetCardResponse {
+  string message = 1;
+}

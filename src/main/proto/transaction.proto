@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package transaction.v1;
+
+option java_multiple_files = true;
+option java_package = "transaction.contract.v1";
+
+service TransactionRpcService {
+  rpc GetTransaction(GetTransactionRequest) returns (GetTransactionResponse);
+}
+
+message GetTransactionRequest {}
+
+message GetTransactionResponse {
+  string message = 1;
+}

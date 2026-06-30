@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package user.v1;
+
+option java_multiple_files = true;
+option java_package = "user.contract.v1";
+
+service UserRpcService {
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+}
+
+message GetUserRequest {}
+
+message GetUserResponse {
+  string message = 1;
+}
