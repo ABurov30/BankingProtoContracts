@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "google/protobuf/empty.proto";
 
 package user.v1;
 
@@ -6,11 +7,32 @@ option java_multiple_files = true;
 option java_package = "user.contract.v1";
 
 service UserRpcService {
-  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc GetUserHealth(google.protobuf.Empty) returns (GetUserHealthGrpcResponse);
+  rpc GetUserInfo(GetUserInfoGrpcRequest) returns (GetUserInfoGrpcResponse);
+  rpc GetAllUserInfo(google.protobuf.Empty) returns (GetAllUserInfoGrpcResponse);
 }
 
-message GetUserRequest {}
-
-message GetUserResponse {
+message GetUserHealthGrpcResponse {
   string message = 1;
+}
+
+message GetUserInfoGrpcRequest {
+  string authUserId = 1;
+  string role = 2;
+}
+
+message UserResponse {
+  string userProfileId = 1;
+  string email = 2;
+  string firstName = 3;
+  string lastName = 4;
+  string status = 5;
+}
+
+message GetUserInfoGrpcResponse {
+  UserResponse user = 1;
+}
+
+message GetAllUserInfoGrpcResponse {
+  repeated  UserResponse users = 1;
 }

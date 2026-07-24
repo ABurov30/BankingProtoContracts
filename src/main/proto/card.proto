@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "google/protobuf/empty.proto";
 
 package card.v1;
 
@@ -6,11 +7,55 @@ option java_multiple_files = true;
 option java_package = "card.contract.v1";
 
 service CardRpcService {
-  rpc GetCard(GetCardRequest) returns (GetCardResponse);
+  rpc GetCardHealth(google.protobuf.Empty) returns (GetCardHealthGrpcResponse);
+  rpc CreateCard(CreateCardGrpcRequest) returns (CreateCardGrpcResponse);
+  rpc UpdateCard(UpdateCardGrpcRequest) returns (UpdateCardGrpcResponse);
+  rpc GetCardsByAccountId(GetCardByAccountIdGrpcRequest) returns (GetCardsGrpcResponse);
 }
 
-message GetCardRequest {}
-
-message GetCardResponse {
+message GetCardHealthGrpcResponse {
   string message = 1;
+}
+
+message CreateCardGrpcRequest {
+  string accountId = 1;
+  string authUserId = 2;
+  string role = 3;
+}
+
+message CardResponse {
+  string cardId = 1;
+  string accountId = 2;
+  string pan = 3;
+  string status = 4;
+  int64 dailyLimit = 5;
+  int64 monthlyLimit = 6;
+  string expiresAt = 7;
+}
+
+message CreateCardGrpcResponse {
+  CardResponse card = 1;
+}
+
+message UpdateCardGrpcRequest {
+  string cardId = 1;
+  string status = 4;
+  int64 dailyLimit = 5;
+  int64 monthlyLimit = 6;
+  string authUserId = 2;
+  string role = 3;
+}
+
+message UpdateCardGrpcResponse {
+  CardResponse card = 1;
+}
+
+message GetCardByAccountIdGrpcRequest {
+  string accountId = 1;
+  string authUserId = 2;
+  string role = 3;
+}
+
+message GetCardsGrpcResponse {
+  repeated CardResponse cards = 1;
 }

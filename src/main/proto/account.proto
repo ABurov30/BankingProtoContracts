@@ -1,16 +1,57 @@
 syntax = "proto3";
-
+import "google/protobuf/empty.proto";
 package account.v1;
 
 option java_multiple_files = true;
 option java_package = "account.contract.v1";
 
 service AccountRpcService {
-  rpc GetAccount(GetAccountRequest) returns (GetAccountResponse);
+  rpc GetAccountHealth(google.protobuf.Empty) returns (GetAccountHealthGrpcResponse);
+  rpc CreateAccount(CreateAccountGrpcRequest) returns (CreateAccountGrpcResponse);
+  rpc GetAccountsByOwnerUserId(GetAccountByOwnerUserIdGrpcRequest) returns (GetAccountsGrpcResponse);
+  rpc GetAllAccounts(google.protobuf.Empty) returns (GetAccountsGrpcResponse);
+  rpc FreezeAccount(FreezeAccountGrpcRequest) returns (google.protobuf.Empty);
 }
 
-message GetAccountRequest {}
-
-message GetAccountResponse {
+message GetAccountHealthGrpcResponse {
   string message = 1;
+}
+
+message CreateAccountGrpcRequest {
+  string ownerUserId = 1;
+  string authUserId = 2;
+  string type = 3;
+  string currency = 4;
+}
+
+message AccountResponse {
+  string accountId = 1;
+  string ownerUserId = 2;
+  string authUserId = 3;
+  string accountNumber = 4;
+  string type = 5;
+  string status = 6;
+  int64 availableBalance = 7;
+  int64 reservedBalance = 8;
+  string currency = 9;
+}
+
+message CreateAccountGrpcResponse {
+  AccountResponse account = 1;
+}
+
+message GetAccountByOwnerUserIdGrpcRequest {
+  string ownerUserId = 1;
+  string authUserId = 2;
+  string role = 3;
+}
+
+message GetAccountsGrpcResponse {
+  repeated AccountResponse accounts = 1;
+}
+
+message FreezeAccountGrpcRequest {
+  string accountId = 1;
+  string authUserId = 2;
+  string role = 3;
 }

@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "google/protobuf/empty.proto";
 
 package transaction.v1;
 
@@ -6,11 +7,9 @@ option java_multiple_files = true;
 option java_package = "transaction.contract.v1";
 
 service TransactionRpcService {
-  rpc GetTransaction(GetTransactionRequest) returns (GetTransactionResponse);
+  rpc GetTransactionHealth(google.protobuf.Empty) returns (GetTransactionHealthGrpcResponse);
 }
 
-message GetTransactionRequest {}
-
-message GetTransactionResponse {
+message GetTransactionHealthGrpcResponse {
   string message = 1;
 }

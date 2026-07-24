@@ -1,0 +1,15 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package notification.v1;
+
+option java_multiple_files = true;
+option java_package = "notification.contract.v1";
+
+service NotificationRpcService {
+  rpc GetNotificationHealth(google.protobuf.Empty) returns (GetNotificationHealthGrpcResponse);
+}
+
+message GetNotificationHealthGrpcResponse {
+  string message = 1;
+}

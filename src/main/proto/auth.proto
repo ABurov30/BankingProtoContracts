@@ -1,16 +1,77 @@
 syntax = "proto3";
-
+import "google/protobuf/empty.proto";
 package auth.v1;
 
 option java_multiple_files = true;
 option java_package = "auth.contract.v1";
 
 service AuthRpcService {
-  rpc GetAuth(GetAuthRequest) returns (GetAuthResponse);
+  rpc GetAuthHealth(google.protobuf.Empty) returns (GetAuthHealthGrpcResponse);
+  rpc Login(LoginAuthGrpcRequest) returns (LoginAuthGrpcResponse);
+  rpc Signup(SignupAuthGrpcRequest) returns (SignupAuthGrpcResponse);
+  rpc Logout(LogoutAuthGrpcRequest) returns (google.protobuf.Empty);
+  rpc Refresh(RefreshAuthGrpcRequest) returns (RefreshAuthGrpcResponse);
+  rpc ChangePassword(ChangePasswordGrpcRequest) returns (google.protobuf.Empty);
+  rpc BlockAuthUser(BlockAuthGrpcRequest) returns (google.protobuf.Empty);
+  rpc UnlockAuthUser(UnlockAuthGrpcRequest) returns (google.protobuf.Empty);
 }
 
-message GetAuthRequest {}
-
-message GetAuthResponse {
+message GetAuthHealthGrpcResponse {
   string message = 1;
+}
+
+message LoginAuthGrpcRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message AuthTokenResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+  int32 accessTokenMinutesTtl = 3;
+  int32 refreshTokenDaysTtl = 4;
+}
+
+message LoginAuthGrpcResponse {
+  AuthTokenResponse tokens = 1;
+}
+
+message SignupAuthGrpcRequest {
+  string email = 1;
+  string password = 2;
+  string firstName = 3;
+  string lastName = 4;
+}
+
+message SignupAuthGrpcResponse {
+  AuthTokenResponse tokens = 1;
+}
+
+message LogoutAuthGrpcRequest {
+  string refreshToken = 1;
+}
+
+message RefreshAuthGrpcRequest {
+  string refreshToken = 1;
+}
+
+message RefreshAuthGrpcResponse {
+  AuthTokenResponse tokens = 1;
+}
+
+message ChangePasswordGrpcRequest {
+  string authUserId = 1;
+  string oldPassword = 2;
+  string  newPassword = 3;
+  string role = 4;
+}
+
+message BlockAuthGrpcRequest {
+  string authUserId = 1;
+  string role = 2;
+}
+
+message UnlockAuthGrpcRequest {
+  string authUserId = 1;
+  string role = 2;
 }
