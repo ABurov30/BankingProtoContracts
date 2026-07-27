@@ -8,12 +8,15 @@ option java_package = "auth.contract.v1";
 service AuthRpcService {
   rpc GetAuthHealth(google.protobuf.Empty) returns (GetAuthHealthGrpcResponse);
   rpc Login(LoginAuthGrpcRequest) returns (LoginAuthGrpcResponse);
-  rpc Signup(SignupAuthGrpcRequest) returns (SignupAuthGrpcResponse);
+  rpc Signup(SignupAuthGrpcRequest) returns (google.protobuf.Empty);
   rpc Logout(LogoutAuthGrpcRequest) returns (google.protobuf.Empty);
   rpc Refresh(RefreshAuthGrpcRequest) returns (RefreshAuthGrpcResponse);
   rpc ChangePassword(ChangePasswordGrpcRequest) returns (google.protobuf.Empty);
   rpc BlockAuthUser(BlockAuthGrpcRequest) returns (google.protobuf.Empty);
   rpc UnlockAuthUser(UnlockAuthGrpcRequest) returns (google.protobuf.Empty);
+  rpc VerifyAuthUserByCode(VerifyAuthUserByCodeGrpcRequest) returns (VerifyAuthUserByCodeGrpcResponse);
+  rpc VerifyAuthUserByPrivilegeRole(VerifyAuthUserByPrivilegeRoleGrpcRequest) returns (google.protobuf.Empty);
+  rpc ChangeAuthUserRole(ChangeAuthUserRoleGrpcRequest) returns (google.protobuf.Empty);
 }
 
 message GetAuthHealthGrpcResponse {
@@ -43,10 +46,6 @@ message SignupAuthGrpcRequest {
   string lastName = 4;
 }
 
-message SignupAuthGrpcResponse {
-  AuthTokenResponse tokens = 1;
-}
-
 message LogoutAuthGrpcRequest {
   string refreshToken = 1;
 }
@@ -68,10 +67,27 @@ message ChangePasswordGrpcRequest {
 
 message BlockAuthGrpcRequest {
   string authUserId = 1;
-  string role = 2;
 }
 
 message UnlockAuthGrpcRequest {
+  string authUserId = 1;
+}
+
+message VerifyAuthUserByCodeGrpcRequest {
+  string authUserId = 1;
+  string verificationCode = 2;
+}
+
+message VerifyAuthUserByCodeGrpcResponse {
+    AuthTokenResponse tokens = 1;
+}
+
+message VerifyAuthUserByPrivilegeRoleGrpcRequest {
+  string authUserId = 1;
+  string role = 2;
+}
+
+message ChangeAuthUserRoleGrpcRequest {
   string authUserId = 1;
   string role = 2;
 }
