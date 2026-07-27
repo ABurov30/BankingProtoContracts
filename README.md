@@ -1,6 +1,23 @@
 # Contracts
 
-Shared protobuf contracts for banking microservices.
+Shared gRPC/protobuf contracts for the banking microservices project.
+
+The package contains `.proto` files and generates Java classes for service stubs,
+requests, and responses.
+
+## Modules
+
+Contracts are stored in `src/main/proto`:
+
+- `auth.proto` - authentication, signup, tokens, roles, password changes.
+- `user.proto` - user profile data.
+- `account.proto` - bank accounts.
+- `card.proto` - cards and card limits.
+- `transaction.proto` - transaction service contract.
+- `notification.proto` - notification service contract.
+
+Generated Java packages use the `*.contract.v1` naming convention, for example
+`auth.contract.v1` and `account.contract.v1`.
 
 ## Build
 
@@ -14,53 +31,33 @@ If Maven Wrapper is not available:
 mvn clean install
 ```
 
-## Protobuf response: tokens or empty
+The build generates protobuf and gRPC Java sources and installs the artifact into
+the local Maven repository.
 
-If an RPC response can contain either auth tokens or an empty successful result, model it with `oneof`.
+## Maven Dependency
 
-```proto
-message VerifyUserGrpcResponse {
-  oneof result {
-    AuthTokenResponse tokens = 1;
-    VerifyUserEmptyResponse empty = 2;
-  }
-}
-
-message VerifyUserEmptyResponse {}
+```xml
+<dependency>
+    <groupId>com.burov</groupId>
+    <artifactId>contracts</artifactId>
+    <version>0.0.4</version>
+</dependency>
 ```
 
-Java usage:
+## Publishing
 
-```java
-switch (response.getResultCase()) {
-    case TOKENS -> {
-        AuthTokenResponse tokens = response.getTokens();
-    }
-    case EMPTY -> {
-        // Success without payload.
-    }
-    case RESULT_NOT_SET -> {
-        // No result was set.
-    }
-}
+The package is configured for GitHub Packages:
+
+```bash
+mvn deploy
 ```
 
-For a simpler contract, leave only the optional message field and treat missing tokens as an empty result.
+Publishing requires Maven credentials for the `github` repository id.
 
-```proto
-message VerifyUserGrpcResponse {
-  AuthTokenResponse tokens = 1;
-}
-```
+## Updating Contracts
 
-Java usage:
+1. Edit the required `.proto` file in `src/main/proto`.
+2. Run `./mvnw clean install`.
+3. Update dependent services to the new package version.
 
-```java
-if (response.hasTokens()) {
-    AuthTokenResponse tokens = response.getTokens();
-} else {
-    // Empty result.
-}
-```
-
-Use `oneof` when the contract must explicitly say "tokens or empty". Use `hasTokens()` when the absence of tokens is enough for the business logic.
+Keep field numbers stable once a contract is used by other services.
