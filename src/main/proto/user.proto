@@ -23,10 +23,11 @@ message GetUserInfoGrpcRequest {
 
 message UserResponse {
   string userProfileId = 1;
-  string email = 2;
-  string firstName = 3;
-  string lastName = 4;
-  string status = 5;
+  string authUserId = 2;
+  string email = 3;
+  string firstName = 4;
+  string lastName = 5;
+  string status = 6;
 }
 
 message GetUserInfoGrpcResponse {

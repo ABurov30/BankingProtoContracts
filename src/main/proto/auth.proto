@@ -17,6 +17,7 @@ service AuthRpcService {
   rpc VerifyAuthUserByCode(VerifyAuthUserByCodeGrpcRequest) returns (VerifyAuthUserByCodeGrpcResponse);
   rpc VerifyAuthUserByPrivilegeRole(VerifyAuthUserByPrivilegeRoleGrpcRequest) returns (google.protobuf.Empty);
   rpc ChangeAuthUserRole(ChangeAuthUserRoleGrpcRequest) returns (google.protobuf.Empty);
+  rpc GetRoleByAuthUserId(GetRoleByAuthUserIdGrpcRequest) returns (GetRoleByAuthUserIdGrpcResponse);
 }
 
 message GetAuthHealthGrpcResponse {
@@ -90,4 +91,12 @@ message VerifyAuthUserByPrivilegeRoleGrpcRequest {
 message ChangeAuthUserRoleGrpcRequest {
   string authUserId = 1;
   string role = 2;
+}
+
+message GetRoleByAuthUserIdGrpcRequest {
+  string authUserId = 1;
+}
+
+message GetRoleByAuthUserIdGrpcResponse {
+  string role = 1;
 }
