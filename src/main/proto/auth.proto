@@ -18,6 +18,8 @@ service AuthRpcService {
   rpc VerifyAuthUserByPrivilegeRole(VerifyAuthUserByPrivilegeRoleGrpcRequest) returns (google.protobuf.Empty);
   rpc ChangeAuthUserRole(ChangeAuthUserRoleGrpcRequest) returns (google.protobuf.Empty);
   rpc GetRoleByAuthUserId(GetRoleByAuthUserIdGrpcRequest) returns (GetRoleByAuthUserIdGrpcResponse);
+  rpc ForgetPassword(ForgetPasswordGrpcRequest) returns (google.protobuf.Empty);
+  rpc ResetPassword(ResetPasswordGrpcRequest) returns (ResetPasswordsGrpcResponse);
 }
 
 message GetAuthHealthGrpcResponse {
@@ -99,4 +101,17 @@ message GetRoleByAuthUserIdGrpcRequest {
 
 message GetRoleByAuthUserIdGrpcResponse {
   string role = 1;
+}
+
+message ForgetPasswordGrpcRequest {
+  string email = 1;
+}
+
+message ResetPasswordGrpcRequest {
+  string authUserId = 1;
+  string  newPassword =2;
+}
+
+message ResetPasswordsGrpcResponse {
+  AuthTokenResponse tokens = 1;
 }
