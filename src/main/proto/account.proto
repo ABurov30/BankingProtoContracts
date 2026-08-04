@@ -13,6 +13,8 @@ service AccountRpcService {
   rpc FreezeAccount(FreezeAccountGrpcRequest) returns (google.protobuf.Empty);
   rpc UnfreezeAccount(UnfreezeAccountGrpcRequest) returns (google.protobuf.Empty);
   rpc GetAccountById(GetAccountByIdGrpcRequest) returns (GetAccountByIdGrpcResponse);
+  rpc TopUpAccount(UpdateAccountBalanceGrpcRequest) returns  (AccountResponse);
+  rpc WithdrawAccount(UpdateAccountBalanceGrpcRequest) returns  (AccountResponse);
 }
 
 message GetAccountHealthGrpcResponse {
@@ -70,4 +72,9 @@ message GetAccountByIdGrpcRequest {
 
 message GetAccountByIdGrpcResponse {
   AccountResponse account = 1;
+}
+
+message UpdateAccountBalanceGrpcRequest {
+  string accountId = 1;
+  int64 amount = 2;
 }
