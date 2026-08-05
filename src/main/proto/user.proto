@@ -10,6 +10,7 @@ service UserRpcService {
   rpc GetUserHealth(google.protobuf.Empty) returns (GetUserHealthGrpcResponse);
   rpc GetUserInfo(GetUserInfoGrpcRequest) returns (GetUserInfoGrpcResponse);
   rpc GetAllUserInfo(google.protobuf.Empty) returns (GetAllUserInfoGrpcResponse);
+  rpc GetUserInfoByEmail(GetUserInfoByEmailRequest) returns (GetUserInfoGrpcResponse);
 }
 
 message GetUserHealthGrpcResponse {
@@ -36,4 +37,8 @@ message GetUserInfoGrpcResponse {
 
 message GetAllUserInfoGrpcResponse {
   repeated  UserResponse users = 1;
+}
+
+message GetUserInfoByEmailRequest {
+  string email = 1;
 }
