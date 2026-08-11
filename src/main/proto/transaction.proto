@@ -2,13 +2,14 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 
 package transaction.v1;
-
+import "account.proto";
 option java_multiple_files = true;
 option java_package = "transaction.contract.v1";
 
 service TransactionRpcService {
   rpc GetTransactionHealth(google.protobuf.Empty) returns (GetTransactionHealthGrpcResponse);
   rpc CreateTransaction(CreateTransactionGrpcRequest) returns (google.protobuf.Empty);
+  rpc GetTransactionsByAccounts(GetTransactionsByAccountsGrpcRequest) returns (GetTransactionsByAccountsGrpcResponse);
 }
 
 message GetTransactionHealthGrpcResponse {
@@ -21,5 +22,24 @@ message CreateTransactionGrpcRequest {
   int64 amount = 3;
   string currency = 4;
   string  idempotencyKey = 5;
-  string  authUserId = 6;
+  string  sourceAuthUserId = 6;
+  string  sourceTargetAuthUserId = 7;
+}
+
+message GetTransactionsByAccountsGrpcRequest {
+  repeated account.v1.AccountResponse accounts = 1;
+}
+
+message TransactionResponse {
+  int64 amount = 1;
+  string currency = 2;
+  string status = 3;
+  string  createdAt = 4;
+  string completedAt = 5;
+  account.v1.AccountResponse sourceAccount = 6;
+  account.v1.AccountResponse targetAccount = 7;
+}
+
+message GetTransactionsByAccountsGrpcResponse {
+  repeated TransactionResponse transactions = 1;
 }
