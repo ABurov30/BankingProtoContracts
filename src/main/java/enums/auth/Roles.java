@@ -1,7 +1,7 @@
 package enums.auth;
 
 public enum Roles {
-    USER,
-    MANAGER,
-    ADMIN
+  USER,
+  MANAGER,
+  ADMIN
 }

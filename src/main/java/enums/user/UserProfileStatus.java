@@ -1,7 +1,7 @@
 package enums.user;
 
 public enum UserProfileStatus {
-    ACTIVE,
-    BLOCKED,
-    PENDING
+  ACTIVE,
+  BLOCKED,
+  PENDING
 }
