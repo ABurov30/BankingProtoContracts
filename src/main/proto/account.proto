@@ -78,6 +78,7 @@ message GetAccountByIdGrpcResponse {
 message UpdateAccountBalanceGrpcRequest {
   string accountId = 1;
   int64 amount = 2;
+  string authUserId = 3;
 }
 
 message ReserveFundsForTransactionGrpcRequest {
@@ -85,6 +86,7 @@ message ReserveFundsForTransactionGrpcRequest {
   string targetAccountId = 2;
   int64 amount = 3;
   string transactionId = 4;
+  string sourceAuthUserId = 5;
 }
 
 message ReserveFundsForTransactionGrpcResponse {
