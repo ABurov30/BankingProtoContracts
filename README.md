@@ -2,30 +2,43 @@
 
 Shared gRPC/protobuf contracts for the banking microservices project.
 
-The package contains `.proto` files and generates Java classes for service stubs,
-requests, and responses.
+This repository publishes the Maven artifact used by the backend services to
+share generated gRPC stubs, protobuf messages, and Java enum constants.
 
-## Modules
+## Documentation
 
-Contracts are stored in `src/main/proto`:
+- [Documentation index](docs/README.md)
+- [Repository overview](docs/overview.md)
+- [Contract catalog](docs/contracts.md)
+- [Build and publishing](docs/build-and-publish.md)
+- [Change guidelines](docs/change-guidelines.md)
+- [Agent instructions](AGENTS.md)
 
-- `auth.proto` - authentication, signup, tokens, roles, password changes.
-- `user.proto` - user profile data.
-- `account.proto` - bank accounts.
-- `card.proto` - cards and card limits.
-- `transaction.proto` - transaction service contract.
-- `notification.proto` - notification service contract.
+## What Is Included
+
+- `src/main/proto` - protobuf service contracts.
+- `src/main/java/enums` - shared Java enum constants used by services.
+- `config/checkstyle` - Checkstyle rules used during Maven verification.
+- `pom.xml` - Maven build, protobuf generation, and GitHub Packages publishing.
 
 Generated Java packages use the `*.contract.v1` naming convention, for example
 `auth.contract.v1` and `account.contract.v1`.
 
+## Contract Modules
+
+| File | Java package | Responsibility |
+| --- | --- | --- |
+| `auth.proto` | `auth.contract.v1` | Authentication, signup, tokens, roles, password changes. |
+| `user.proto` | `user.contract.v1` | User profile lookup and listing. |
+| `account.proto` | `account.contract.v1` | Accounts, balances, account state, and fund reservation. |
+| `card.proto` | `card.contract.v1` | Cards, card status, and card limits. |
+| `transaction.proto` | `transaction.contract.v1` | Transaction creation and transaction lookup. |
+| `notification.proto` | `notification.contract.v1` | Notification service health contract. |
+
 ## Build
 
-```bash
-./mvnw clean install
-```
-
-If Maven Wrapper is not available:
+This repository currently does not include a Maven Wrapper. Use a local Maven
+installation:
 
 ```bash
 mvn clean install
@@ -40,24 +53,20 @@ the local Maven repository.
 <dependency>
     <groupId>com.burov</groupId>
     <artifactId>contracts</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.15</version>
 </dependency>
 ```
 
-## Publishing
-
-The package is configured for GitHub Packages:
-
-```bash
-mvn deploy
-```
-
-Publishing requires Maven credentials for the `github` repository id.
+Keep the dependency version in consumer services aligned with the version in
+`pom.xml`.
 
 ## Updating Contracts
 
 1. Edit the required `.proto` file in `src/main/proto`.
-2. Run `./mvnw clean install`.
-3. Update dependent services to the new package version.
+2. Preserve existing field numbers and package names.
+3. Update related enum documentation when string enum values change.
+4. Run `mvn clean install`.
+5. Publish the new artifact when downstream services need the change.
+6. Update dependent services to the new package version.
 
-Keep field numbers stable once a contract is used by other services.
+For compatibility details, see [change guidelines](docs/change-guidelines.md).
