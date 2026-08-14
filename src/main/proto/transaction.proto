@@ -23,7 +23,8 @@ message CreateTransactionGrpcRequest {
   string currency = 4;
   string  idempotencyKey = 5;
   string  sourceAuthUserId = 6;
-  string  sourceTargetAuthUserId = 7;
+  string  targetAuthUserId = 7;
+  string  sourceCardId = 8;
 }
 
 message GetTransactionsByAccountsGrpcRequest {

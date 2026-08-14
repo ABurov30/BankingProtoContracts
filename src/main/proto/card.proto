@@ -11,6 +11,7 @@ service CardRpcService {
   rpc CreateCard(CreateCardGrpcRequest) returns (CreateCardGrpcResponse);
   rpc UpdateCard(UpdateCardGrpcRequest) returns (UpdateCardGrpcResponse);
   rpc GetCardsByAccountId(GetCardByAccountIdGrpcRequest) returns (GetCardsGrpcResponse);
+  rpc ReserveLimitsForTransaction(ReserveLimitsForTransactionGrpcRequest) returns (ReserveLimitsForTransactionGrpcResponse);
 }
 
 message GetCardHealthGrpcResponse {
@@ -31,6 +32,8 @@ message CardResponse {
   int64 dailyLimit = 5;
   int64 monthlyLimit = 6;
   string expiresAt = 7;
+  int64 spendDailyLimit = 8;
+  int64  spendMonthlyLimit = 9;
 }
 
 message CreateCardGrpcResponse {
@@ -58,4 +61,16 @@ message GetCardByAccountIdGrpcRequest {
 
 message GetCardsGrpcResponse {
   repeated CardResponse cards = 1;
+}
+
+message ReserveLimitsForTransactionGrpcRequest {
+  string sourceCardId = 1;
+  int64 amount = 2;
+  string transactionId = 3;
+  string sourceAuthUserId = 4;
+}
+
+message ReserveLimitsForTransactionGrpcResponse {
+  string status = 1;
+  string  message = 2;
 }
