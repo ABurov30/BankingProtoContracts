@@ -100,11 +100,17 @@ message GetAuthUserByIdGrpcRequest {
   string authUserId = 1;
 }
 
+message SocialAccountResponse {
+  string provider = 1;
+  string email = 2;
+}
+
 message GetAuthUserByIdGrpcResponse {
   string authUserId = 1;
   string status = 2;
   string email = 3;
   string role = 4;
+  repeated SocialAccountResponse socialAccounts = 5;
 }
 
 message ForgetPasswordGrpcRequest {
