@@ -10,6 +10,8 @@ service TransactionRpcService {
   rpc GetTransactionHealth(google.protobuf.Empty) returns (GetTransactionHealthGrpcResponse);
   rpc CreateTransaction(CreateTransactionGrpcRequest) returns (google.protobuf.Empty);
   rpc GetTransactionsByAccounts(GetTransactionsByAccountsGrpcRequest) returns (GetTransactionsByAccountsGrpcResponse);
+  rpc WatchTransactionStatus(WatchTransactionStatusRequest)
+      returns (stream TransactionStatusResponse);
 }
 
 message GetTransactionHealthGrpcResponse {
@@ -39,8 +41,23 @@ message TransactionResponse {
   string completedAt = 5;
   account.v1.AccountResponse sourceAccount = 6;
   account.v1.AccountResponse targetAccount = 7;
+  string transactionId = 8;
 }
 
 message GetTransactionsByAccountsGrpcResponse {
   repeated TransactionResponse transactions = 1;
+}
+
+message WatchTransactionStatusRequest {
+  string transactionId = 1;
+  string authUserId = 2;
+  string subscriptionKey = 3;
+}
+
+message TransactionStatusResponse {
+  int64 amount = 1;
+  string currency = 2;
+  string status = 3;
+  account.v1.AccountResponseWithoutSensitiveInfo sourceAccount = 4;
+  account.v1.AccountResponseWithoutSensitiveInfo targetAccount = 5;
 }

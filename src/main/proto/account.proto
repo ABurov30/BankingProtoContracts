@@ -41,6 +41,11 @@ message AccountResponse {
   string currency = 9;
 }
 
+message AccountResponseWithoutSensitiveInfo {
+  string accountNumber = 1;
+  string currency = 2;
+}
+
 message CreateAccountGrpcResponse {
   AccountResponse account = 1;
 }
