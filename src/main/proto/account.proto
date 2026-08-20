@@ -89,7 +89,7 @@ message UpdateAccountBalanceGrpcRequest {
 message ReserveFundsForTransactionGrpcRequest {
   string sourceAccountId = 1;
   string targetAccountId = 2;
-  int64 amount = 3;
+  int64 minorUnits = 3;
   string transactionId = 4;
   string sourceAuthUserId = 5;
 }

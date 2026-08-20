@@ -21,7 +21,7 @@ message GetTransactionHealthGrpcResponse {
 message CreateTransactionGrpcRequest {
   string sourceAccountId = 1;
   string targetAccountId = 2;
-  int64 amount = 3;
+  int64 minorUnits = 3;
   string currency = 4;
   string  idempotencyKey = 5;
   string  sourceAuthUserId = 6;
@@ -34,7 +34,7 @@ message GetTransactionsByAccountsGrpcRequest {
 }
 
 message TransactionResponse {
-  int64 amount = 1;
+  int64 minorUnits = 1;
   string currency = 2;
   string status = 3;
   string  createdAt = 4;
@@ -55,7 +55,7 @@ message WatchTransactionStatusRequest {
 }
 
 message TransactionStatusResponse {
-  int64 amount = 1;
+  int64 minorUnits = 1;
   string currency = 2;
   string status = 3;
   account.v1.AccountResponseWithoutSensitiveInfo sourceAccount = 4;
