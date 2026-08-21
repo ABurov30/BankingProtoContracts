@@ -82,7 +82,7 @@ message GetAccountByIdGrpcResponse {
 
 message UpdateAccountBalanceGrpcRequest {
   string accountId = 1;
-  int64 amount = 2;
+  int64 minorUnits = 2;
   string authUserId = 3;
 }
 

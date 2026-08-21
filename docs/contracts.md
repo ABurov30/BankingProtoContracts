@@ -80,7 +80,7 @@ Related enums:
 
 - `enums.account.AccountStatus`: `ACTIVE`, `FROZEN`, `CLOSED`
 - `enums.account.AccountType`: `CHECKING`, `SAVINGS`
-- `enums.account.AccountCurrency`: `USD`, `EUR`, `CNY`, `GBP`
+- `enums.common.Currency`: `USD`, `EUR`, `CNY`, `GBP`
 - `enums.account.ReservationStatus`: `RESERVED`, `RELEASED`, `RELEASED_BY_TIME`, `COMPENSATED`, `FAILED`
 
 ## Card

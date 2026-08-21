@@ -1,6 +1,6 @@
-package enums.account;
+package enums.common;
 
-public enum AccountCurrency {
+public enum Currency {
 
   USD("USD", 840, 2),
   EUR("EUR", 978, 2),
@@ -11,7 +11,7 @@ public enum AccountCurrency {
   private final int numericCode;
   private final int minorUnit;
 
-  AccountCurrency(String alphabeticCode, int numericCode, int minorUnit) {
+  Currency(String alphabeticCode, int numericCode, int minorUnit) {
     this.alphabeticCode = alphabeticCode;
     this.numericCode = numericCode;
     this.minorUnit = minorUnit;

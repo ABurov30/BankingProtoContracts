@@ -29,11 +29,12 @@ message CardResponse {
   string accountId = 2;
   string pan = 3;
   string status = 4;
-  int64 dailyLimit = 5;
-  int64 monthlyLimit = 6;
+  int64 dailyLimitMinorUnits = 5;
+  int64 monthlyLimitMinorUnits = 6;
   string expiresAt = 7;
-  int64 spendDailyLimit = 8;
-  int64  spendMonthlyLimit = 9;
+  int64 spendDailyLimitMinorUnits = 8;
+  int64  spendMonthlyLimitMinorUnits = 9;
+  string currency = 10;
 }
 
 message CreateCardGrpcResponse {
@@ -43,8 +44,8 @@ message CreateCardGrpcResponse {
 message UpdateCardGrpcRequest {
   string cardId = 1;
   string status = 4;
-  int64 dailyLimit = 5;
-  int64 monthlyLimit = 6;
+  int64 dailyLimitMinorUnits = 5;
+  int64 monthlyLimitMinorUnits = 6;
   string authUserId = 2;
   string role = 3;
 }
