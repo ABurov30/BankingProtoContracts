@@ -36,8 +36,8 @@ message AccountResponse {
   string accountNumber = 4;
   string type = 5;
   string status = 6;
-  int64 availableBalance = 7;
-  int64 reservedBalance = 8;
+  int64 availableBalanceMinorUnits = 7;
+  int64 reservedBalanceMinorUnits = 8;
   string currency = 9;
 }
 
