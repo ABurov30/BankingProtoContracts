@@ -28,8 +28,8 @@ message ExampleResponse {
 ## Enum-Like Values
 
 Proto fields currently represent values such as `role`, `status`, `currency`,
-and `type` as strings. Keep the accepted string values aligned with the Java enum
-constants in `src/main/java/enums`.
+`type`, and social login `provider` as strings. Keep the accepted string values
+aligned with the Java enum constants in `src/main/java/enums`.
 
 When adding or renaming an enum value:
 

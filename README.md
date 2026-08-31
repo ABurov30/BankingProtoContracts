@@ -32,7 +32,7 @@ Generated Java packages use the `*.contract.v1` naming convention, for example
 | `user.proto` | `user.contract.v1` | User profile lookup and listing. |
 | `account.proto` | `account.contract.v1` | Accounts, balances, account state, and fund reservation. |
 | `card.proto` | `card.contract.v1` | Cards, card status, and card limits. |
-| `transaction.proto` | `transaction.contract.v1` | Transaction creation and transaction lookup. |
+| `transaction.proto` | `transaction.contract.v1` | Transaction creation, lookup, and status streaming. |
 | `notification.proto` | `notification.contract.v1` | Notification service health contract. |
 
 ## Build
@@ -53,7 +53,7 @@ the local Maven repository.
 <dependency>
     <groupId>com.burov</groupId>
     <artifactId>contracts</artifactId>
-    <version>0.0.15</version>
+    <version>0.0.22</version>
 </dependency>
 ```
 

@@ -10,7 +10,7 @@ protobuf message classes, and shared Java enum constants.
 | --- | --- |
 | Group ID | `com.burov` |
 | Artifact ID | `contracts` |
-| Current version | `0.0.15` |
+| Current version | `0.0.22` |
 | Packaging | `jar` |
 | Java release | `17` |
 
@@ -20,7 +20,7 @@ protobuf message classes, and shared Java enum constants.
 | --- | --- |
 | Protobuf | `4.31.1` |
 | gRPC Java | `1.73.0` |
-| Checkstyle | `13.6.0` |
+| Checkstyle | `12.3.1` |
 
 ## Layout
 
@@ -37,5 +37,5 @@ Each proto file uses a domain package such as `auth.v1` and a Java package in
 the `*.contract.v1` format, for example `auth.contract.v1`.
 
 The proto APIs currently represent enum-like values such as `role`, `status`,
-`currency`, and `type` as strings. Keep those accepted string values aligned with
-the Java enums under `src/main/java/enums`.
+`currency`, `type`, and social login `provider` as strings. Keep those accepted
+string values aligned with the Java enums under `src/main/java/enums`.

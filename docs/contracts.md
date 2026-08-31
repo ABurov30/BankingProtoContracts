@@ -28,11 +28,13 @@ RPCs:
 - `GetAuthUserById`
 - `ForgetPassword`
 - `ResetPassword`
+- `SocialLogin`
 
 Related enums:
 
 - `enums.auth.Roles`: `USER`, `MANAGER`, `ADMIN`
 - `enums.auth.AuthUserStatus`: `ACTIVE`, `BLOCKED`, `PENDING`, `FORGET_PASSWORD`
+- `enums.auth.SocialLoginProvider`: `GOOGLE`
 
 ## User
 
@@ -98,10 +100,12 @@ RPCs:
 - `CreateCard`
 - `UpdateCard`
 - `GetCardsByAccountId`
+- `ReserveLimitsForTransaction`
 
 Related enums:
 
 - `enums.card.CardStatus`: `ACTIVE`, `BLOCKED`, `FROZEN`, `EXPIRED`
+- `enums.common.Currency`: `USD`, `EUR`, `CNY`, `GBP`
 
 ## Transaction
 
@@ -120,6 +124,7 @@ RPCs:
 - `GetTransactionHealth`
 - `CreateTransaction`
 - `GetTransactionsByAccounts`
+- `WatchTransactionStatus` server-streams `TransactionStatusResponse` updates.
 
 Related enums:
 

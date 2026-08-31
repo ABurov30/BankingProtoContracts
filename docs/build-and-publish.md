@@ -28,7 +28,7 @@ The build:
 <dependency>
     <groupId>com.burov</groupId>
     <artifactId>contracts</artifactId>
-    <version>0.0.15</version>
+    <version>0.0.22</version>
 </dependency>
 ```
 
