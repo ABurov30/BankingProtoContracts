@@ -3,7 +3,7 @@
 Shared gRPC/protobuf contracts for the banking microservices project.
 
 This repository publishes the Maven artifact used by the backend services to
-share generated gRPC stubs, protobuf messages, and Java enum constants.
+share generated gRPC stubs and protobuf messages.
 
 ## Documentation
 
@@ -17,7 +17,6 @@ share generated gRPC stubs, protobuf messages, and Java enum constants.
 ## What Is Included
 
 - `src/main/proto` - protobuf service contracts.
-- `src/main/java/enums` - shared Java enum constants used by services.
 - `config/checkstyle` - Checkstyle rules used during Maven verification.
 - `pom.xml` - Maven build, protobuf generation, and GitHub Packages publishing.
 
@@ -53,7 +52,7 @@ the local Maven repository.
 <dependency>
     <groupId>com.burov</groupId>
     <artifactId>contracts</artifactId>
-    <version>0.0.22</version>
+    <version>0.0.23</version>
 </dependency>
 ```
 
@@ -64,7 +63,7 @@ Keep the dependency version in consumer services aligned with the version in
 
 1. Edit the required `.proto` file in `src/main/proto`.
 2. Preserve existing field numbers and package names.
-3. Update related enum documentation when string enum values change.
+3. Update related string-value documentation when accepted values change.
 4. Run `mvn clean install`.
 5. Publish the new artifact when downstream services need the change.
 6. Update dependent services to the new package version.

@@ -92,6 +92,7 @@ message ReserveFundsForTransactionGrpcRequest {
   int64 minorUnits = 3;
   string transactionId = 4;
   string sourceAuthUserId = 5;
+  string currency = 6;
 }
 
 message ReserveFundsForTransactionGrpcResponse {

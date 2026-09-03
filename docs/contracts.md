@@ -30,11 +30,11 @@ RPCs:
 - `ResetPassword`
 - `SocialLogin`
 
-Related enums:
+Known string values:
 
-- `enums.auth.Roles`: `USER`, `MANAGER`, `ADMIN`
-- `enums.auth.AuthUserStatus`: `ACTIVE`, `BLOCKED`, `PENDING`, `FORGET_PASSWORD`
-- `enums.auth.SocialLoginProvider`: `GOOGLE`
+- `role`: `USER`, `MANAGER`, `ADMIN`
+- `status`: `ACTIVE`, `BLOCKED`, `PENDING`, `FORGET_PASSWORD`
+- `provider`: `GOOGLE`
 
 ## User
 
@@ -52,9 +52,10 @@ RPCs:
 - `GetAllUserInfo`
 - `GetUserInfoByEmail`
 
-Related enums:
+Known string values:
 
-- `enums.user.UserProfileStatus`: `ACTIVE`, `BLOCKED`, `PENDING`
+- `role`: `USER`, `MANAGER`, `ADMIN`
+- `status`: `ACTIVE`, `BLOCKED`, `PENDING`
 
 ## Account
 
@@ -78,12 +79,13 @@ RPCs:
 - `WithdrawAccount`
 - `ReserveFundsForTransaction`
 
-Related enums:
+Known string values:
 
-- `enums.account.AccountStatus`: `ACTIVE`, `FROZEN`, `CLOSED`
-- `enums.account.AccountType`: `CHECKING`, `SAVINGS`
-- `enums.common.Currency`: `USD`, `EUR`, `CNY`, `GBP`
-- `enums.account.ReservationStatus`: `RESERVED`, `RELEASED`, `RELEASED_BY_TIME`, `COMPENSATED`, `FAILED`
+- `role`: `USER`, `MANAGER`, `ADMIN`
+- `status`: `ACTIVE`, `FROZEN`, `CLOSED`
+- `type`: `CHECKING`, `SAVINGS`
+- `currency`: `USD`, `EUR`, `CNY`, `GBP`
+- reservation `status`: `RESERVED`, `RELEASED`, `RELEASED_BY_TIME`, `COMPENSATED`, `FAILED`
 
 ## Card
 
@@ -102,10 +104,11 @@ RPCs:
 - `GetCardsByAccountId`
 - `ReserveLimitsForTransaction`
 
-Related enums:
+Known string values:
 
-- `enums.card.CardStatus`: `ACTIVE`, `BLOCKED`, `FROZEN`, `EXPIRED`
-- `enums.common.Currency`: `USD`, `EUR`, `CNY`, `GBP`
+- `role`: `USER`, `MANAGER`, `ADMIN`
+- `status`: `ACTIVE`, `BLOCKED`, `FROZEN`, `EXPIRED`
+- `currency`: `USD`, `EUR`, `CNY`, `GBP`
 
 ## Transaction
 
@@ -126,10 +129,10 @@ RPCs:
 - `GetTransactionsByAccounts`
 - `WatchTransactionStatus` server-streams `TransactionStatusResponse` updates.
 
-Related enums:
+Known string values:
 
-- `enums.transaction.TransactionDirection`: `SENDER`, `RECIPIENT`
-- `enums.transaction.TransactionStatus`: `FUNDS_RESERVED`, `FUNDS_REQUESTED`, `COMPLETED`, `FAILED`, `COMPENSATED`
+- `currency`: `USD`, `EUR`, `CNY`, `GBP`
+- `status`: `FUNDS_RESERVED`, `FUNDS_REQUESTED`, `COMPLETED`, `FAILED`, `COMPENSATED`
 
 ## Notification
 

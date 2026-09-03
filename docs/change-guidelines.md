@@ -28,19 +28,20 @@ message ExampleResponse {
 ## Enum-Like Values
 
 Proto fields currently represent values such as `role`, `status`, `currency`,
-`type`, and social login `provider` as strings. Keep the accepted string values
-aligned with the Java enum constants in `src/main/java/enums`.
+`type`, and social login `provider` as strings. This repository does not define
+source Java enums for those values, so treat the documented values in
+[contracts.md](contracts.md) and the validation in service implementations as
+the compatibility surface.
 
 When adding or renaming an enum value:
 
-1. Update the Java enum.
-2. Update the service validation that accepts the string value.
-3. Update [contracts.md](contracts.md).
-4. Rebuild the artifact.
+1. Update the service validation that accepts the string value.
+2. Update [contracts.md](contracts.md).
+3. Rebuild the artifact.
 
 ## Update Checklist
 
-1. Change the relevant `.proto` file or Java enum.
+1. Change the relevant `.proto` file.
 2. Update documentation in `docs/`.
 3. Update `pom.xml` version when preparing a release for downstream services.
 4. Run `mvn clean install`.

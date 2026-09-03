@@ -22,13 +22,19 @@ The build:
 - Runs Checkstyle during `verify`.
 - Installs `com.burov:contracts` into the local Maven repository.
 
+For a CI-equivalent local check without installing the artifact, run:
+
+```bash
+mvn --batch-mode verify
+```
+
 ## Consumer Dependency
 
 ```xml
 <dependency>
     <groupId>com.burov</groupId>
     <artifactId>contracts</artifactId>
-    <version>0.0.22</version>
+    <version>0.0.23</version>
 </dependency>
 ```
 
@@ -46,6 +52,9 @@ mvn deploy
 Publishing uses the `github` repository id from `distributionManagement`.
 Credentials must be configured in Maven settings for that repository id before
 running deploy.
+
+GitHub Actions also publishes with `mvn --batch-mode clean deploy` when a GitHub
+release is created or the publish workflow is run manually.
 
 ## Generated Output
 

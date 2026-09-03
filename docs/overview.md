@@ -2,7 +2,7 @@
 
 `Contracts` is the shared contract artifact for the banking microservices
 project. It contains protobuf definitions, generated gRPC Java stubs, generated
-protobuf message classes, and shared Java enum constants.
+protobuf message classes, and Maven publishing configuration.
 
 ## Artifact
 
@@ -10,7 +10,7 @@ protobuf message classes, and shared Java enum constants.
 | --- | --- |
 | Group ID | `com.burov` |
 | Artifact ID | `contracts` |
-| Current version | `0.0.22` |
+| Current version | `0.0.23` |
 | Packaging | `jar` |
 | Java release | `17` |
 
@@ -27,8 +27,9 @@ protobuf message classes, and shared Java enum constants.
 | Path | Purpose |
 | --- | --- |
 | `src/main/proto` | Public protobuf and gRPC contracts. |
-| `src/main/java/enums` | Shared enum constants used by service implementations. |
 | `config/checkstyle` | Checkstyle configuration used by Maven. |
+| `.github/workflows/ci.yml` | Runs `mvn --batch-mode verify` for pushes and pull requests to `main`. |
+| `.github/workflows/publish.yml` | Publishes the Maven package on GitHub release creation or manual dispatch. |
 | `target` | Generated and compiled build output. Do not edit manually. |
 
 ## Generated Packages
@@ -37,5 +38,6 @@ Each proto file uses a domain package such as `auth.v1` and a Java package in
 the `*.contract.v1` format, for example `auth.contract.v1`.
 
 The proto APIs currently represent enum-like values such as `role`, `status`,
-`currency`, `type`, and social login `provider` as strings. Keep those accepted
-string values aligned with the Java enums under `src/main/java/enums`.
+`currency`, `type`, and social login `provider` as strings. Keep accepted
+values aligned across the producing and consuming services, and update
+[contracts.md](contracts.md) when those accepted values change.
