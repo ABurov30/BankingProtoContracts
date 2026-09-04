@@ -8,7 +8,7 @@ option java_package = "transaction.contract.v1";
 
 service TransactionRpcService {
   rpc GetTransactionHealth(google.protobuf.Empty) returns (GetTransactionHealthGrpcResponse);
-  rpc CreateTransaction(CreateTransactionGrpcRequest) returns (google.protobuf.Empty);
+  rpc CreateTransaction(CreateTransactionGrpcRequest) returns (CreateTransactionGrpcResponse);
   rpc GetTransactionsByAccounts(GetTransactionsByAccountsGrpcRequest) returns (GetTransactionsByAccountsGrpcResponse);
   rpc WatchTransactionStatus(WatchTransactionStatusRequest)
       returns (stream TransactionStatusResponse);
@@ -27,6 +27,13 @@ message CreateTransactionGrpcRequest {
   string  sourceAuthUserId = 6;
   string  targetAuthUserId = 7;
   string  sourceCardId = 8;
+}
+
+message CreateTransactionGrpcResponse {
+  string transactionId = 1;
+  int64 minorUnits = 2;
+  string currency = 3;
+  string status = 4;
 }
 
 message GetTransactionsByAccountsGrpcRequest {
