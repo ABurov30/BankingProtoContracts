@@ -9,13 +9,35 @@ service AccountRpcService {
   rpc GetAccountHealth(google.protobuf.Empty) returns (GetAccountHealthGrpcResponse);
   rpc CreateAccount(CreateAccountGrpcRequest) returns (CreateAccountGrpcResponse);
   rpc GetAccountsByOwnerUserId(GetAccountByOwnerUserIdGrpcRequest) returns (GetAccountsGrpcResponse);
-  rpc GetAllAccounts(google.protobuf.Empty) returns (GetAccountsGrpcResponse);
+  rpc GetAllAccounts(GetAllAccountsGrpRequest) returns (GetAccountsGrpcResponse);
   rpc FreezeAccount(FreezeAccountGrpcRequest) returns (google.protobuf.Empty);
   rpc UnfreezeAccount(UnfreezeAccountGrpcRequest) returns (google.protobuf.Empty);
   rpc GetAccountById(GetAccountByIdGrpcRequest) returns (GetAccountByIdGrpcResponse);
   rpc TopUpAccount(UpdateAccountBalanceGrpcRequest) returns  (AccountResponse);
   rpc WithdrawAccount(UpdateAccountBalanceGrpcRequest) returns  (AccountResponse);
   rpc ReserveFundsForTransaction(ReserveFundsForTransactionGrpcRequest) returns (ReserveFundsForTransactionGrpcResponse);
+  rpc GetRecipientAccountsByOwnerUserId(GetRecipientAccountsByOwnerUserIdGrpcRequest) returns (GetRecipientAccountsByOwnerUserIdGrpcResponse);
+  rpc GetAccountByIdForTransaction(GetAccountByIdForTransactionGrpcRequest) returns (GetAccountByIdGrpcResponse);
+}
+
+message GetAccountByIdForTransactionGrpcRequest {
+  string accountId = 1;
+}
+
+message GetRecipientAccountsByOwnerUserIdGrpcRequest {
+  string ownerUserId = 1;
+}
+
+message RecipientAccount {
+  string accountId = 1;
+  string accountNumberLast4Chars = 4;
+  string type = 5;
+  string status = 6;
+  string currency = 9;
+}
+
+message GetRecipientAccountsByOwnerUserIdGrpcResponse {
+  repeated RecipientAccount accounts = 1;
 }
 
 message GetAccountHealthGrpcResponse {
@@ -50,6 +72,10 @@ message CreateAccountGrpcResponse {
   AccountResponse account = 1;
 }
 
+message GetAllAccountsGrpRequest {
+  string role = 1;
+}
+
 message GetAccountByOwnerUserIdGrpcRequest {
   string ownerUserId = 1;
   string authUserId = 2;
@@ -74,6 +100,8 @@ message UnfreezeAccountGrpcRequest {
 
 message GetAccountByIdGrpcRequest {
   string accountId = 1;
+  string authUserId = 2;
+  string role = 3;
 }
 
 message GetAccountByIdGrpcResponse {
@@ -93,6 +121,7 @@ message ReserveFundsForTransactionGrpcRequest {
   string transactionId = 4;
   string sourceAuthUserId = 5;
   string currency = 6;
+  string authUserId = 7;
 }
 
 message ReserveFundsForTransactionGrpcResponse {

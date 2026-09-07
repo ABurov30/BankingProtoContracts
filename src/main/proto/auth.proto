@@ -11,7 +11,7 @@ service AuthRpcService {
   rpc Signup(SignupAuthGrpcRequest) returns (google.protobuf.Empty);
   rpc Logout(LogoutAuthGrpcRequest) returns (google.protobuf.Empty);
   rpc Refresh(RefreshAuthGrpcRequest) returns (RefreshAuthGrpcResponse);
-  rpc ChangePassword(ChangePasswordGrpcRequest) returns (google.protobuf.Empty);
+  rpc ChangePassword(ChangePasswordGrpcRequest) returns (ChangePasswordGrpcResponse);
   rpc BlockAuthUser(BlockAuthGrpcRequest) returns (google.protobuf.Empty);
   rpc UnlockAuthUser(UnlockAuthGrpcRequest) returns (google.protobuf.Empty);
   rpc VerifyAuthUserByCode(VerifyAuthUserByCodeGrpcRequest) returns (VerifyAuthUserByCodeGrpcResponse);
@@ -65,8 +65,12 @@ message RefreshAuthGrpcResponse {
 message ChangePasswordGrpcRequest {
   string authUserId = 1;
   string oldPassword = 2;
-  string  newPassword = 3;
-  string role = 4;
+  string newPassword = 3;
+}
+
+message ChangePasswordGrpcResponse {
+  string refreshToken = 1;
+  int32 refreshTokenDaysTtl = 2;
 }
 
 message BlockAuthGrpcRequest {
