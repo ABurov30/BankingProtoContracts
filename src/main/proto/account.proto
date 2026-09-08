@@ -9,6 +9,7 @@ service AccountRpcService {
   rpc GetAccountHealth(google.protobuf.Empty) returns (GetAccountHealthGrpcResponse);
   rpc CreateAccount(CreateAccountGrpcRequest) returns (CreateAccountGrpcResponse);
   rpc GetAccountsByOwnerUserId(GetAccountByOwnerUserIdGrpcRequest) returns (GetAccountsGrpcResponse);
+  rpc GetAccountsByAuthUserId(GetAccountByAuthUserIdGrpcRequest) returns (GetAccountsGrpcResponse);
   rpc GetAllAccounts(GetAllAccountsGrpRequest) returns (GetAccountsGrpcResponse);
   rpc FreezeAccount(FreezeAccountGrpcRequest) returns (google.protobuf.Empty);
   rpc UnfreezeAccount(UnfreezeAccountGrpcRequest) returns (google.protobuf.Empty);
@@ -78,6 +79,11 @@ message GetAllAccountsGrpRequest {
 
 message GetAccountByOwnerUserIdGrpcRequest {
   string ownerUserId = 1;
+  string authUserId = 2;
+  string role = 3;
+}
+
+message GetAccountByAuthUserIdGrpcRequest {
   string authUserId = 2;
   string role = 3;
 }

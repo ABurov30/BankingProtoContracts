@@ -45,8 +45,8 @@ message TransactionResponse {
   string status = 3;
   string  createdAt = 4;
   string completedAt = 5;
-  account.v1.AccountResponse sourceAccount = 6;
-  account.v1.AccountResponse targetAccount = 7;
+  account.v1.RecipientAccount sourceAccount = 6;
+  account.v1.RecipientAccount targetAccount = 7;
   string transactionId = 8;
 }
 
