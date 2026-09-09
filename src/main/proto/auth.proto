@@ -122,7 +122,7 @@ message ForgetPasswordGrpcRequest {
 }
 
 message ResetPasswordGrpcRequest {
-  string authUserId = 1;
+  string resetPasswordToken = 1;
   string  newPassword = 2;
 }
 
