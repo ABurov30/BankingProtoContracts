@@ -18,11 +18,15 @@ service AccountRpcService {
   rpc WithdrawAccount(UpdateAccountBalanceGrpcRequest) returns  (AccountResponse);
   rpc ReserveFundsForTransaction(ReserveFundsForTransactionGrpcRequest) returns (ReserveFundsForTransactionGrpcResponse);
   rpc GetRecipientAccountsByOwnerUserId(GetRecipientAccountsByOwnerUserIdGrpcRequest) returns (GetRecipientAccountsByOwnerUserIdGrpcResponse);
-  rpc GetAccountByIdForTransaction(GetAccountByIdForTransactionGrpcRequest) returns (GetAccountByIdGrpcResponse);
+  rpc GetAccountByIdsForTransaction(GetAccountByIdsForTransactionGrpcRequest) returns (GetAccountByIdGrpcResponses);
 }
 
 message GetAccountByIdForTransactionGrpcRequest {
   string accountId = 1;
+}
+
+message GetAccountByIdsForTransactionGrpcRequest {
+  repeated string accountId = 1;
 }
 
 message GetRecipientAccountsByOwnerUserIdGrpcRequest {
@@ -112,6 +116,10 @@ message GetAccountByIdGrpcRequest {
 
 message GetAccountByIdGrpcResponse {
   AccountResponse account = 1;
+}
+
+message GetAccountByIdGrpcResponses {
+  repeated AccountResponse account = 1;
 }
 
 message UpdateAccountBalanceGrpcRequest {

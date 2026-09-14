@@ -18,6 +18,7 @@ service AuthRpcService {
   rpc VerifyAuthUserByPrivilegeRole(VerifyAuthUserByPrivilegeRoleGrpcRequest) returns (google.protobuf.Empty);
   rpc ChangeAuthUserRole(ChangeAuthUserRoleGrpcRequest) returns (google.protobuf.Empty);
   rpc GetAuthUserById(GetAuthUserByIdGrpcRequest) returns (GetAuthUserByIdGrpcResponse);
+  rpc GetAuthUserByIds(GetAuthUserByIdsGrpcRequest) returns (GetAuthUserByIdsGrpcResponse);
   rpc ForgetPassword(ForgetPasswordGrpcRequest) returns (google.protobuf.Empty);
   rpc ResetPassword(ResetPasswordGrpcRequest) returns (ResetPasswordsGrpcResponse);
   rpc SocialLogin (SocialLoginGrpcRequest) returns (SocialLoginGrpcResponse);
@@ -104,6 +105,10 @@ message GetAuthUserByIdGrpcRequest {
   string authUserId = 1;
 }
 
+message GetAuthUserByIdsGrpcRequest {
+  repeated string authUserId = 1;
+}
+
 message SocialAccountResponse {
   string provider = 1;
   string email = 2;
@@ -115,6 +120,10 @@ message GetAuthUserByIdGrpcResponse {
   string email = 3;
   string role = 4;
   repeated SocialAccountResponse socialAccounts = 5;
+}
+
+message GetAuthUserByIdsGrpcResponse {
+  repeated GetAuthUserByIdGrpcResponse authUsers = 1;
 }
 
 message ForgetPasswordGrpcRequest {

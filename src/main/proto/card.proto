@@ -11,6 +11,7 @@ service CardRpcService {
   rpc CreateCard(CreateCardGrpcRequest) returns (CreateCardGrpcResponse);
   rpc UpdateCard(UpdateCardGrpcRequest) returns (UpdateCardGrpcResponse);
   rpc GetCardsByAccountId(GetCardByAccountIdGrpcRequest) returns (GetCardsGrpcResponse);
+  rpc GetCardsByAccountIds(GetCardByAccountIdsGrpcRequest) returns (GetCardsGrpcResponse);
   rpc ReserveLimitsForTransaction(ReserveLimitsForTransactionGrpcRequest) returns (ReserveLimitsForTransactionGrpcResponse);
 }
 
@@ -57,6 +58,12 @@ message UpdateCardGrpcResponse {
 
 message GetCardByAccountIdGrpcRequest {
   string accountId = 1;
+  string authUserId = 2;
+  string role = 3;
+}
+
+message GetCardByAccountIdsGrpcRequest {
+  repeated string accountId = 1;
   string authUserId = 2;
   string role = 3;
 }
